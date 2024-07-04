@@ -1,0 +1,70 @@
+{
+    "data_product_name" : "Product_Supplier",
+    "raw_data_product_name" : "supplier",
+    "schema" : {
+        "source_columns" : [
+            {
+                "raw_name" : "sup_id",
+                "standardized_name" : "Supplier_ID",
+                "data_type" : "string",
+                "sql_transformation" : "CONCAT('SUP', '-' , sup_id)"
+            },
+            {
+                "raw_name" : "name",
+                "standardized_name" : "Supplier_Name",
+                "data_type" : "string",
+                "sql_transformation" : ""
+            },
+            {
+                "raw_name" : "price",
+                "standardized_name" : "Purchase_Price",
+                "data_type" : "int",
+                "sql_transformation" : ""
+            },
+            {
+                "raw_name" : "prod_name",
+                "standardized_name" : "Product_Name",
+                "data_type" : "string",
+                "sql_transformation" : ""
+            },
+            {
+                "raw_name" : "quantity",
+                "standardized_name" : "Purchase_Quantity",
+                "data_type" : "int",
+                "sql_transformation" : ""
+            },
+            {
+                "raw_name" : "",
+                "standardized_name" : "Total_Cost",
+                "data_type" : "int",
+                "sql_transformation" : "price * quantity"
+            }
+        
+        ],
+"new_columns" : [
+            {
+                "name" : "Product_ID",
+                "data_type" : "string",
+                "sql_transformation" : "MERGE INTO delta.`{temp_std_dp_path}` dest USING delta.`dbfs:/FileStore/project/Product` src ON dest.Product_Name = src.Product_Name WHEN MATCHED THEN UPDATE SET dest.Product_ID = src.Product_ID"
+            }
+        ]
+    },
+
+    "column_sequence_order" : [
+        "Supplier_ID", "Supplier_Name", "Product_ID", "Product_Name", "Purchase_Price", "Purchase_Quantity", "Total_Cost"
+    ],
+
+    "metadata" : {
+        
+        "column_descriptions" : {
+
+            "Supplier_ID" : "Unique identifier for the supplier of a product",
+            "Supplier_Name" : "Name of the supplier",
+            "Purchase_Price" : "Price at which the supplier sells the product",
+            "Product_Name" : "Name of the product",
+            "Purchase_Quantity" : "Quantity of the product available with the supplier",
+            "Total_Cost" : "Total amount spent on purchasing a specific quantity of items at the given purchase price.",
+            "Product_ID" : "Unique identifier for the product"
+        }
+    }
+}
