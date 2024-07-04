@@ -16,7 +16,7 @@ This project aims to provide a generic solution for data standardization that ca
 ## Getting Started 🚀
 
 A tutorial blog post is published on Medium that explains the implementation details and provides a step-by-step guide to get started with this project and apply it to your data pipelines. It also includes a sample dataset and configuration file to demonstrate the working of this project.
-You can find the blog post [here](https://medium.com/@saurabhkumar_4718/config-driven-data-standardization-6f3b3f3b3b3b).
+You can find the blog post [here](https://medium.com/p/12aa7c52fae1/edit).
 
 - The code can be found in `data_standardization.py` which contains the implementation of the data standardization logic along with the example run.
 - The config template can be found in `config_template.json` which contains the structure of the configuration file.
